@@ -19,16 +19,12 @@ services:
   api:
     container_name: api
     build: .
-    # command: python3 manage.py runserver 0.0.0.0:8000
-    # command: uwsgi --enable-threads --master --uid 1000 --http :8000 --wsgi-file ./safeex_project/test.py
     command: uwsgi --ini ./safeex.uwsgi.ini
     volumes:
       - .:/app
       - uwsgi_data:/tmp/uwsgi/
       - ./static:/code/static/
       - ./static:/var/www/safeex/assets/
-    # ports:
-    #   - "8000:8000"
     depends_on:
       - db
   nginx:
@@ -39,7 +35,7 @@ services:
       - uwsgi_data:/tmp/uwsgi/
       - ./static:/var/www/safeex/assets/:ro
     ports:
-      - "8888:80"
+      - "80:80"
     depends_on: 
       - api
 volumes:
