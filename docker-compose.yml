@@ -1,0 +1,48 @@
+services:
+  db:
+    image: postgres
+    container_name: db
+    environment:
+      POSTGRES_PASSWORD: db_pass
+      POSTGRES_USER: safeex
+      POSTGRES_DB: safeex
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data/
+  adminer:
+      image: adminer
+      container_name: adminer
+      restart: always
+      ports:
+        - 8080:8080
+  api:
+    container_name: api
+    build: .
+    # command: python3 manage.py runserver 0.0.0.0:8000
+    # command: uwsgi --enable-threads --master --uid 1000 --http :8000 --wsgi-file ./safeex_project/test.py
+    command: uwsgi --ini ./safeex.uwsgi.ini
+    volumes:
+      - .:/app
+      - uwsgi_data:/tmp/uwsgi/
+      - ./static:/code/static/
+      - ./static:/var/www/safeex/assets/
+    # ports:
+    #   - "8000:8000"
+    depends_on:
+      - db
+  nginx:
+    container_name: nginx
+    build: ./nginx/
+    restart: always
+    volumes:
+      - uwsgi_data:/tmp/uwsgi/
+      - ./static:/var/www/safeex/assets/:ro
+    ports:
+      - "8888:80"
+    depends_on: 
+      - api
+volumes:
+  db-data:
+  uwsgi_data:
+  web_static:
