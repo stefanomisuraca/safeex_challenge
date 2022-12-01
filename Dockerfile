@@ -8,4 +8,4 @@ RUN pip-compile requirements.in -o requirements.txt
 RUN pip install -r requirements.txt
 COPY . /app/
 
-ENTRYPOINT [ "./docker_startup.sh" ]
+ENTRYPOINT ["/app/docker_startup.sh"]
