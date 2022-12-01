@@ -19,10 +19,10 @@ services:
   api:
     container_name: api
     build: .
-    # command: python3 manage.py runserver 0.0.0.0:8000
     ports:
       - 8000:8000
     command: uwsgi --ini ./safeex.uwsgi.ini
+    entrypoint: /app/docker_startup.sh
     volumes:
       - .:/app
       - uwsgi_data:/tmp/uwsgi/
