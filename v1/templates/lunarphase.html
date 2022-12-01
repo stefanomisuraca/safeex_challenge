@@ -1,2 +1,16 @@
-<h1>Test</h1>
-{% if data %}<p>{{ data }}</p>{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SafeEx Challenge</title>
+  </head>
+  <body>
+    <main>
+        <h1>Current Lunar Phase</h1>
+        {% if lunar_image %}<img id="lunar_image" src="{{ lunar_image }}"/>{% endif %}<br/>
+        <a href="/accounts/logout">Logout</a>
+    </main>
+  </body>
+</html>

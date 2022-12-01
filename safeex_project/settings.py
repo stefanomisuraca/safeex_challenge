@@ -126,6 +126,8 @@ USE_TZ = True
 
 APPEND_SLASH = True
 
+LOGIN_REDIRECT_URL = "/fe/lunarphase"
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/

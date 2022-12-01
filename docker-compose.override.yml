@@ -3,9 +3,10 @@ services:
   api:
     environment:
       - DEBUG=True
-      - API_HOST=http://localhost:8000
       - DB_ENGINE=django.db.backends.postgresql
       - DB_HOSTNAME=db
       - DB_USER=safeex
       - DB_PASSWORD=db_pass
       - DB_NAME=safeex
+      - ASTRO_API_KEY=N2NiOWUxZGYtMTIyNC00NmM0LWEyODgtY2JmZmJhZmYwNGQzOjJlNWU5MjZlNTM4ZTZiMmIwNDVhMDc0NTYzNTQxMzhjNDFkYzA5ODc2YWMyNGE2NWU1NzU1YzUwMjhiODU4NzJmNTYwYjgxNmQzYzVkNTIyMjhhODA3MGExZWQ3ZDZhYjZkNGJhMDA1OTMxNjhmY2EzN2FjZGQyOTg4ZDVmMWQyZTY2MzBkMjhlYjczNzgzYzZiYWJiZTkzZDRkMTM0ZjQ2YjQ3ODA0MTA4YWY1NTg1MWFkMzU3NWQwZGUzZDMwYmI4YzJjMTNiYzkxMzUxMTYzZTE3NzBlN2QwMmM4M2M0
+      - ASTRO_API_BASE_URL=https://api.astronomyapi.com/api/v2

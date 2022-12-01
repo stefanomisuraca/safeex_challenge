@@ -19,28 +19,28 @@ services:
   api:
     container_name: api
     build: .
-    command: python3 manage.py runserver 0.0.0.0:8000
+    # command: python3 manage.py runserver 0.0.0.0:8000
     ports:
       - 8000:8000
-    # command: uwsgi --ini ./safeex.uwsgi.ini
+    command: uwsgi --ini ./safeex.uwsgi.ini
     volumes:
       - .:/app
-      # - uwsgi_data:/tmp/uwsgi/
+      - uwsgi_data:/tmp/uwsgi/
       - ./static:/code/static/
       - ./static:/var/www/safeex/assets/
     depends_on:
       - db
-  # nginx:
-  #   container_name: nginx
-  #   build: ./nginx/
-  #   restart: always
-  #   volumes:
-  #     - uwsgi_data:/tmp/uwsgi/
-  #     - ./static:/var/www/safeex/assets/:ro
-  #   ports:
-  #     - "80:80"
-  #   depends_on: 
-  #     - api
+  nginx:
+    container_name: nginx
+    build: ./nginx/
+    restart: always
+    volumes:
+      - uwsgi_data:/tmp/uwsgi/
+      - ./static:/var/www/safeex/assets/:ro
+    ports:
+      - "80:80"
+    depends_on: 
+      - api
 volumes:
   db-data:
   uwsgi_data:
