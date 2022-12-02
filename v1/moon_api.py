@@ -1,6 +1,6 @@
 
 from datetime import datetime
-from typing import Dict, List
+from typing import List, Dict
 import requests
 import base64
 import os
@@ -18,7 +18,7 @@ class MoonApi:
         self.lon = kwarg.get("lon")
         self.date = kwarg.get("date")
         self.request_body = {
-            "format": "png",
+            "format": "svg",
             "style": {
                 "moonStyle": "default",
                 "backgroundStyle": "solid",
@@ -57,9 +57,9 @@ class MoonApi:
 
 
 def get_lunar_phase_service(
-    lat=55,
-    lon=12,
-    date=datetime.now().strftime('%Y-%m-%d')
+    lat:float=55,
+    lon:float=12,
+    date:datetime=datetime.now().strftime('%Y-%m-%d')
 ) -> List[Dict]:
     moon_api = MoonApi(lat=lat, lon=lon, date=date)
     return moon_api.get_lunar_phase()
