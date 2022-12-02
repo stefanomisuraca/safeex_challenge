@@ -45,8 +45,7 @@ class MoonApi:
 
         response = requests.post(
             headers=headers,
-            # url=f"{ASTRO_API_BASE_URL}/studio/moon-phase",
-            url="https://api.astronomyapi.com/api/v2/studio/moon-phase",
+            url=f"{ASTRO_API_BASE_URL}/studio/moon-phase",
             json=self.request_body
         )
         return response.json()
