@@ -21,8 +21,7 @@ services:
     build: .
     ports:
       - 8000:8000
-    command: uwsgi --ini ./safeex.uwsgi.ini
-    entrypoint: /app/docker_startup.sh
+    command: sh docker_startup.sh
     volumes:
       - .:/app
       - uwsgi_data:/tmp/uwsgi/
